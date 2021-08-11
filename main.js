@@ -3,8 +3,25 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
-
-
+document.addEventListener("DOMContentLoaded", () => {
+  const likeBtns = document.getElementsByClassName("like-glyph");
+  for (let likeBtn of likeBtns) {
+    likeBtn.addEventListener("click", (e) => {
+      mimicServerCall("www.foobar.com")
+        .then( () => {toggleBtn(e.target)})
+        .catch(error => {alert(error)})
+    })
+  }
+  function toggleBtn(likeBtn) {
+    if (likeBtn.innerText == EMPTY_HEART) {
+      likeBtn.innerText = FULL_HEART;
+      likeBtn.style.color = "red";
+    } else {
+      likeBtn.innerText = EMPTY_HEART;
+      likeBtn.style.color = "black";
+    }
+  }
+});
 
 
 //------------------------------------------------------------------------------
